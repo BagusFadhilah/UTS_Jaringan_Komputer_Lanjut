@@ -1,56 +1,25 @@
-#Topologi Mesh Partial
+# Topologi Hub-and-Spoke Wan
 
-Router R1 (CR):
+![Topologi Jaringan Komputer Lanjut (2)](https://github.com/user-attachments/assets/10856555-cbe7-49fc-99eb-e8b680bd903c)
 
-Terhubung ke Router R2 (KHI) melalui antarmuka Ethernet 4 (10.10.10.1).
-Terhubung ke Router R3 (KJ) melalui antarmuka Ethernet 3 (15.15.15.1).
-Terhubung ke jaringan lokal dengan antarmuka Ethernet 2 (192.168.10.1/24) yang mengarah ke komputer lokal di bawahnya.
 
-Router R2 (KHI):
+Topologi jaringan pada gambar ini adalah topologi WAN berbasis hub-and-spoke yang digunakan untuk menghubungkan tiga kampus (Citra Raya, Kebon Jeruk, dan Harapan Indah) yang berada di lokasi geografis berbeda.
 
-Terhubung ke Router R1 (CR) melalui antarmuka Ethernet 4 (10.10.10.2).
-Terhubung ke Router R3 (KJ) melalui antarmuka Ethernet 3 (20.20.20.1).
-Terhubung ke jaringan lokal dengan antarmuka Ethernet 2 (192.168.20.1/24) yang mengarah ke komputer lokal di sebelah kanan.
+1).Jenis Topologi: Hub-and-Spoke WAN
+Topologi ini mengadopsi model hub-and-spoke, di mana setiap kampus dihubungkan ke jaringan pusat melalui WAN (internet). Dengan kata lain, setiap kampus memiliki koneksi independen yang berpusat pada satu jaringan internet yang berfungsi sebagai “hub”.
+Setiap kampus memiliki router yang terhubung ke internet menggunakan IP publik, serta memiliki tunnel point-to-point untuk koneksi langsung antara satu kampus dengan kampus lainnya.
 
-Router R3 (KJ):
+2).Komponen Utama dalam Topologi:
+Router dengan IP Publik: Masing-masing kampus memiliki router yang terhubung ke internet menggunakan IP publik:
+Kampus Citra Raya menggunakan IP publik 203.0.113.1
+Kampus Kebon Jeruk menggunakan IP publik 203.0.113.2
+Kampus Harapan Indah menggunakan IP publik 203.0.113.3
 
-Terhubung ke Router R1 (CR) melalui antarmuka Ethernet 4 (15.15.15.2).
-Terhubung ke Router R2 (KHI) melalui antarmuka Ethernet 3 (20.20.20.2).
-Terhubung ke jaringan lokal dengan antarmuka Ethernet 2 (192.168.30.1/24) yang mengarah ke komputer lokal di sebelah kiri.
+Tunnels (IP Tunnel): Tunnel ini berfungsi untuk mengamankan koneksi antar-router melalui internet. Setiap pasangan kampus memiliki IP tunnel point-to-point, contohnya:
+IP Tunnel antara Kampus Citra Raya dan Kampus Kebon Jeruk adalah 10.1.1.1/30 dan 10.1.1.2/30.
+IP Tunnel antara Kampus Citra Raya dan Kampus Harapan Indah adalah 10.1.2.1/30 dan 10.1.2.2/30.
 
-------------------------------------------------------------------------------------------------------------------------------------------
-
-Setiap router dalam topologi ini menggunakan protokol Routing RIP untuk mendistribusikan informasi routing ke seluruh jaringan, memungkinkan tiap router mengetahui jalur terbaik untuk mencapai jaringan yang berbeda.
-
-Komputer lokal pada setiap segmen IP (192.168.10.0/24, 192.168.20.0/24, 192.168.30.0/24) berperan sebagai end-user yang terhubung ke masing-masing router.
-
-------------------------------------------------------------------------------------------------------------------------------------------
-
-Dalam tugas praktikum ini, saya telah mengonfigurasi tiga router (R1 CR, R2 KHI, dan R3 KJ) menggunakan Winbox dengan protokol Routing RIP. Topologi jaringan ini dirancang untuk menghubungkan beberapa jaringan lokal yang berbeda melalui protokol RIP, yang akan meng-update rute secara otomatis di antara router-router ini.
-
-##Penjelasan Setiap Router
-Router R1 (CR):
-
-Fungsi: R1 berfungsi sebagai router pusat yang menghubungkan jaringan lokal 192.168.10.1/24 ke router lainnya.
-Konfigurasi IP:
-Ethernet 2 terhubung ke jaringan lokal 192.168.10.0/24 dengan IP 192.168.10.1.
-Ethernet 3 dan Ethernet 4 digunakan untuk menghubungkan router ini ke R2 dan R3 dengan IP sesuai topologi.
-RIP: R1 dikonfigurasi untuk menggunakan RIP agar dapat berkomunikasi dan berbagi informasi rute dengan router lain.
-
-Router R2 (KHI):
-
-Fungsi: R2 menghubungkan jaringan lokal 192.168.20.1/24 dan berperan dalam mengalirkan data antara R1 dan R3.
-Konfigurasi IP:
-Ethernet 2 terhubung ke jaringan lokal 192.168.20.0/24 dengan IP 192.168.20.1.
-Ethernet 3 dan Ethernet 4 digunakan untuk komunikasi antar router.
-RIP: R2 juga dikonfigurasi untuk menggunakan RIP agar rute ke jaringan-jaringan lain dapat diperbarui otomatis.
-
-Router R3 (KJ):
-
-Fungsi: R3 berfungsi sebagai penghubung jaringan lokal 192.168.30.1/24 dan berkomunikasi dengan R1 dan R2.
-Konfigurasi IP:
-Ethernet 2 terhubung ke jaringan lokal 192.168.30.0/24 dengan IP 192.168.30.1.
-Ethernet 3 dan Ethernet 4 menyediakan koneksi ke R1 dan R2.
-RIP: Sama dengan router lainnya, R3 juga dikonfigurasi dengan RIP untuk memastikan semua router saling mengetahui rute ke setiap jaringan.
-
-Konfigurasi ini memungkinkan setiap jaringan lokal (192.168.10.0/24, 192.168.20.0/24, dan 192.168.30.0/24) dapat saling berkomunikasi melalui routing dinamis menggunakan RIP. Dengan RIP, rute antar jaringan dapat diperbarui otomatis, sehingga ketika ada perubahan dalam jaringan, router bisa menyesuaikan rute tanpa perlu konfigurasi manual.
+LAN di Masing-Masing Kampus: Setiap kampus memiliki jaringan LAN yang menghubungkan komputer-komputer di dalam kampus tersebut melalui switch, misalnya:
+Kampus Citra Raya memiliki IP LAN 192.168.10.0/24, dengan router sebagai gateway pada 192.168.10.1.
+Kampus Kebon Jeruk memiliki IP LAN 192.168.20.0/24, dengan gateway pada 192.168.20.1.
+Kampus Harapan Indah memiliki IP LAN 192.168.30.0/24, dengan gateway pada 192.168.30.1.
