@@ -1,3 +1,5 @@
+#Topologi Mesh Partial
+
 Router R1 (CR):
 
 Terhubung ke Router R2 (KHI) melalui antarmuka Ethernet 4 (10.10.10.1).
