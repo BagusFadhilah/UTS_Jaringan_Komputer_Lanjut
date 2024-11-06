@@ -14,4 +14,5 @@ ini teknik yang bikin IP lokal (dalam jaringan) berubah jadi IP publik saat akse
 
 # Topologi Hub and Spoke WAN
 
-![Topologi Jaringan Komputer Lanjut (2)](https://github.com/user-attachments/assets/8cba42a1-504f-4185-b467-7e1179858d41)
+![Topologi H S Jaringan Komputer Lanjut](https://github.com/user-attachments/assets/859075ec-c14d-4022-ad7b-aa2021cb85b2)
+
