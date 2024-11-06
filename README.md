@@ -12,4 +12,6 @@ sistem keamanan pada windows yang nyaring dan ngontrol data yang masuk atau kelu
 4. NAT
 ini teknik yang bikin IP lokal (dalam jaringan) berubah jadi IP publik saat akses internet. Jadi, banyak perangkat di jaringan yang bisa pakai satu IP publik. Ini bikin IP lebih irit dan jaringan lebih aman.
 
-![Topologi Praktikum EsaUnggul](https://github.com/user-attachments/assets/4b829bf0-e333-424c-a402-9d487e79fd87)
+# Topologi Hub and Spoke WAN
+
+![Topologi Jaringan Komputer Lanjut (2)](https://github.com/user-attachments/assets/8cba42a1-504f-4185-b467-7e1179858d41)
